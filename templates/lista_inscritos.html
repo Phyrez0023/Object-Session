@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Listado de Inscritos</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Turno</th>
+            <th>Seminarios</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for inscrito in inscritos %}
+        <tr>
+            <td>{{ inscrito['fecha'] }}</td>
+            <td>{{ inscrito['nombre'] }}</td>
+            <td>{{ inscrito['apellido'] }}</td>
+            <td>{{ inscrito['turno'] }}</td>
+            <td>{{ inscrito['seminarios'] }}</td>
+            <td>
+                <a href="{{ url_for('editar', index=loop.index0) }}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{{ url_for('eliminar', index=loop.index0) }}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
